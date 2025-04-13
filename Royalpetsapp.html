@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Pets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa; /* Color de fondo muy claro */
+            color: #333;
+            line-height: 1.6;
+            /* Fondo con marca de agua */
+            background-image: url(https://github.com/Ferdinus/Estetica-canina-RoyalPets/blob/3042c6779f1342ac147c11dbbc8666f5b199d66b/Logo.png?raw=true);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        header {
+            background-color: #2596be; /* Color azulado principal */
+            color: #fff;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #d2b536; /* Color amarillo al hacer hover */
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2596be;
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card img {
+            width: 250px;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: #2596be;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: #555;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .service-card button {
+            background-color: #d2b536; /* Color amarillo para botones */
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .service-card button:hover {
+            background-color: #b09122;
+            transform: scale(1.05);
+        }
+
+        #appointment-form {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        #appointment-form h2 {
+            color: #2596be;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        #appointment-form form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #appointment-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 1.1em;
+            width: 100%;
+            text-align: left;
+        }
+
+        #appointment-form input[type="text"],
+        #appointment-form input[type="number"],
+        #appointment-form input[type="email"],
+        #appointment-form input[type="date"],
+        #appointment-form select,
+        #appointment-form textarea {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: border-color 0.3s ease;
+        }
+
+        #appointment-form input[type="text"]:focus,
+        #appointment-form input[type="number"]:focus,
+        #appointment-form input[type="email"]:focus,
+        #appointment-form input[type="date"]:focus,
+        #appointment-form select:focus,
+        #appointment-form textarea:focus {
+            outline: none;
+            border-color: #2596be;
+            box-shadow: 0 0 5px rgba(37, 150, 190, 0.3);
+        }
+
+        #appointment-form textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        #appointment-form button[type="submit"] {
+            background-color: #d2b536; /* Color amarillo para botones */
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+        }
+
+        #appointment-form button[type="submit"]:hover {
+            background-color: #b09122;
+            transform: scale(1.05);
+        }
+
+        .conocenos-section {
+            margin-top: 30px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .conocenos-section h2 {
+            color: #2596be;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .conocenos-section h3 {
+            color: #2596be;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .conocenos-section p {
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+
+        .contact-info {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+        }
+
+        .contact-info h3 {
+            color: #2596be;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact-info p {
+            color: #555;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        /* Banner */
+        .banner {
+            width: 100%;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden; /* Para asegurar que la imagen no se desborde del borde redondeado */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .banner img {
+            width: 100%;
+            height: auto;
+            display: block; /* Elimina el espacio extra debajo de la imagen */
+        }
+
+
+        /* Media queries para hacerlo responsivo */
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+            }
+
+            .service-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .service-card img {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 15px;
+            }
+
+            .service-card h3 {
+                font-size: 1.2em;
+            }
+
+            .service-card p {
+                font-size: 1em;
+            }
+
+            #appointment-form input[type="text"],
+            #appointment-form input[type="number"],
+            #appointment-form input[type="email"],
+            #appointment-form input[type="date"],
+            #appointment-form select,
+            #appointment-form textarea {
+                width: calc(100% - 10px);
+                padding: 10px;
+                margin-bottom: 15px;
+                font-size: 1em;
+            }
+
+            #appointment-form button[type="submit"] {
+                font-size: 1em;
+                padding: 10px 25px;
+            }
+
+            .conocenos-section h2 {
+                font-size: 1.8em;
+            }
+
+            .conocenos-section h3 {
+                font-size: 1.2em;
+            }
+
+            .conocenos-section p {
+                font-size: 1em;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            nav ul li a {
+                font-size: 1em;
+            }
+
+             .banner {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Adiciones para mejorar la responsividad en móviles muy pequeños */
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul li a {
+                font-size: 0.9em;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .section-title {
+                font-size: 1.6em;
+            }
+
+            .service-card {
+                padding: 10px;
+            }
+
+            .service-card h3 {
+                font-size: 1.1em;
+            }
+
+            .service-card p {
+                font-size: 0.95em;
+            }
+
+            #appointment-form h2 {
+                font-size: 1.6em;
+            }
+
+            .conocenos-section h2 {
+                font-size: 1.6em;
+            }
+
+            .conocenos-section h3 {
+                font-size: 1.1em;
+            }
+
+            .contact-info h3{
+               font-size: 1.2em;
+            }
+
+             .banner {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Royal Pets</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#citas">Agendar Cita</a></li>
+                <li><a href="#conocenos">Conócenos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <img src="https://github.com/Ferdinus/Estetica-canina-RoyalPets/blob/3042c6779f1342ac147c11dbbc8666f5b199d66b/Banner.jpg?raw=true" alt="Banner Principal">
+    </div>
+
+    <div class="container" id="inicio">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <div class="service-card">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin-bottom: 20px;">
+                <img src="https://github.com/Ferdinus/Estetica-canina-RoyalPets/blob/3042c6779f1342ac147c11dbbc8666f5b199d66b/Corte%201.jpeg?raw=true" alt="Corte de Pelo 1" style="margin-right: 10px; width: 200px; height: auto; border-radius: 5px;">
+                <img src="https://github.com/Ferdinus/Estetica-canina-RoyalPets/blob/3042c6779f1342ac147c11dbbc8666f5b199d66b/Corte%202.jpeg?raw=true" alt="Corte de Pelo 2" style="margin-right: 10px; width: 200px; height: auto; border-radius: 5px;">
+                <img src="https://github.com/Ferdinus/Estetica-canina-RoyalPets/blob/3042c6779f1342ac147c11dbbc8666f5b199d66b/Corte%203.jpeg?raw=true" alt="Corte de Pelo 3" style="width: 200px; height: auto; border-radius: 5px;">
+            </div>
+            <h3>Corte Premium</h3>
+            <p>Desata todo el potencial de estilo de tu mascota con nuestro servicio Corte Premium. ¿Sueñas con un corte específico de una foto, el look característico de su raza o un estilo de vanguardia? ¡Nosotros lo hacemos realidad! Este servicio exclusivo incluye un baño revitalizante con shampoo dermatológico, un masaje relajante y una sesión de aromaterapia para su disfrute. Además, realizamos un corte de uñas profesional y una limpieza de orejas completa. Utilizamos acondicionador para un pelaje suave y brillante, secamos con aire caliente y finalizamos con la aplicación de un protector bifásico que realza su belleza y un toque de perfume duradero. ¡Confía en nuestros estilistas expertos para crear una obra de arte en el pelaje de tu compañero!</p>
+            <button onclick="document.getElementById('citas').scrollIntoView({ behavior: 'smooth' }); document.getElementById('servicio').value = 'Corte Premium';">Agendar Cita</button>
+        </div>
+        <div class="service-card">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin-bottom: 20px;">
+                <img src="https://github.com/Ferdinus/Estetica-canina-RoyalPets/blob/3042c6779f1342ac147c11dbbc8666f5b199d66b/Ba%C3%B1o%204.jpeg?raw=true" alt="Baño 1" style="margin-right: 10px; width: 200px; height: auto; border-radius: 5px;">
+                <img src="https://github.com/Ferdinus/Estetica-canina-RoyalPets/blob/3042c6779f1342ac147c11dbbc8666f5b199d66b/Ba%C3%B1o%20Grande.jpeg?raw=true" alt="Baño 2" style="margin-right: 10px; width: 200px; height: auto; border-radius: 5px;">
+                <img src="https://github.com/Ferdinus/Estetica-canina-RoyalPets/blob/3042c6779f1342ac147c11dbbc8666f5b199d66b/Ba%C3%B1o%205.jpeg?raw=true" alt="Baño 3" style="width: 200px; height: auto; border-radius: 5px;">
+            </div>
+            <h3>Baño Premium</h3>
+            <p>Eleva la rutina de higiene de tu mascota a un nivel superior con nuestro exclusivo servicio Baño Premium. Sumérgelo en una experiencia de bienestar completa que incluye un baño relajante con shampoo dermatológico de alta calidad y un acondicionador nutritivo. Disfruta de un masaje suave que estimula la circulación y una sesión de aromaterapia que calma sus sentidos. Además, realizamos un corte de uñas impecable, una limpieza de orejas minuciosa y un cepillado profundo o deslanado profesional, según sus necesidades. El secado con aire caliente asegura un pelaje suave y brillante, y para finalizar, aplicamos un protector bifásico que realza su belleza natural y un toque de perfume duradero. ¡Regálale a tu peludo el cuidado que se merece con nuestro Baño Premium!</p>
+            <button onclick="document.getElementById('citas').scrollIntoView({ behavior: 'smooth' }); document.getElementById('servicio').value = 'Baño Premium';">Agendar Cita</button>
+        </div>
+        </div>
+
+    <div class="container" id="citas">
+        <h2 class="section-title">Agendar Cita</h2>
+        <form id="appointment-form">
+            <input type="hidden" id="servicio" name="servicio" value="">
+            <label for="dueno">Dueño:</label>
+            <input type="text" id="dueno" name="dueno" required>
+
+            <label for="mascota">Mascota:</label>
+            <input type="text" id="mascota" name="mascota" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="number" id="telefono" name="telefono" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="fecha" required>
+
+            <label for="hora">Hora (entre 9:00 am y 5:00 pm):</label>
+            <select id="hora" name="hora" required>
+                <option value="09:00">09:00 am</option>
+                <option value="10:00">10:00 am</option>
+                <option value="11:00">11:00 am</option>
+                <option value="12:00">12:00 pm</option>
+                <option value="13:00">01:00 pm</option>
+                <option value="14:00">02:00 pm</option>
+                <option value="15:00">03:00 pm</option>
+                <option value="16:00">04:00 pm</option>
+                <option value="17:00">05:00 pm</option>
+            </select>
+
+            <label for="comentario">Comentario (opcional):</label>
+            <textarea id="comentario" name="comentario"></textarea>
+
+            <button type="submit">Enviar Cita</button>
+            <p style="margin-top: 10px; font-size: 0.9em; color: #777;">(Esta funcionalidad de envío de cita se implementará conectando este formulario a tu hoja de Google Sheets mediante JavaScript y la API de Google Sheets).</p>
+        </form>
+    </div>
+
+    <div class="container conocenos-section" id="conocenos">
+        <h2 class="section-title">Conócenos</h2>
+        <h3>Misión</h3>
+        <p>Ofrecer servicios de estilismo canino de alta calidad, priorizando el bienestar y la comodidad de cada mascota, y la satisfacción de sus dueños.</p>
+
+        <h3>Visión</h3>
+        <p>Ser el salón de belleza canino líder en la región, reconocido por nuestra excelencia en el servicio, la innovación en nuestros estilos y el amor por los animales.</p>
+
+        <h3>Valor</h3>
+        <p>Amor por los animales, profesionalismo, higiene, paciencia y atención personalizada.</p>
+
+        <div class="contact-info">
+            <h3>Información de Contacto</h3>
+            <p><strong>Horario de Trabajo:</strong> Lunes a Sábado de 9:00 am a 5:00 pm</p>
+            <p><strong>Dirección:</strong> Tecate, Baja California, Colonia Industrial, Calle Av. Paseo Morelos, #999</p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para funcionalidades interactivas
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelectorAll('nav a').forEach(navLink => navLink.classList.remove('active'));
+                this.classList.add('active');
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Agrega aquí la lógica para enviar el formulario a Google Sheets
+        document.getElementById('appointment-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío por defecto del formulario
+
+            // Recoge los datos del formulario
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Calcula la hora de fin de la cita (esto es una simplificación)
+            let horaFin = data.hora;
+            if (data.servicio === 'Corte de Pelo') {
+                horaFin = sumarHoras(horaFin, 2); // Suma 2 horas para corte
+            } else if (data.servicio === 'Baño') {
+                horaFin = sumarHoras(horaFin, 1);     // Suma 1 hora para baño
+            }
+            data.horaFin = horaFin;
+
+            console.log(data);
+
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwkIGRJ7tpCOZ-ulHotMP9fm5DmqKe8KGFPcD3YaW8SULdjDzZOs329quGMoRWhBiXUXw/exec'; // Reemplaza con la URL de tu script
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+                if (result.result === 'success') {
+                    alert('¡Cita agendada con éxito!');
+                    document.getElementById('appointment-form').reset(); // Opcional: resetear el formulario
+                } else {
+                    alert('Hubo un error al agendar la cita. Por favor, intenta de nuevo.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error al agendar la cita. Por favor, intenta de nuevo.');
+            });
+        });
+
+        // Función para sumar horas (simplificada para el ejemplo)
+        function sumarHoras(horaInicio, horasASumar) {
+            let [hh, mm] = horaInicio.split(':').map(Number);
+            hh += horasASumar;
+            if (hh > 17) {
+                hh = 17;
+                mm = 0;
+            }
+            return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+        }
+    </script>
+</body>
+</html>
